@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { inquirerMenu, pausa, leerInput } = require('./helpers/inquirer');
 const Busquedas = require('./models/busquedas');
 
@@ -11,7 +13,7 @@ const main = async() => {
     if (opt === 1) {
       // Mostrar mensaje
       const lugar = await leerInput('Ciudad:');
-      console.log('🚀 ~ main ~ lugar', lugar);
+      await busquedas.buscarLugar(lugar);
 
       // Buscar los lugares
 
