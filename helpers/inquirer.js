@@ -53,20 +53,20 @@ const leerInput = async (mensaje) => {
   return desc;
 }
 
-const listarTareas = async(tareas = []) => {
-  const choices = tareas.map( (tarea, i) => {
-    return { value: tarea.id, name: (i + 1) + '. ' + tarea.desc }
+const listarOpciones = async(opciones = [], mensaje = 'Seleccione una opción') => {
+  const choices = opciones.map( (opcion, i) => {
+    return { value: opcion.id, name: (i + 1) + '. ' + opcion.nombre }
   });
   choices.unshift({value:'0', name: '0. Cancelar'})
 
-  const pregunta = [
+  const preguntas = [
     { type: 'list',
       name: 'id',
-      message: 'Borrar',
+      message: mensaje,
       choices
     }
   ];
-  const { id } = await inquirer.prompt(pregunta);
+  const { id } = await inquirer.prompt(preguntas);
   return id;
 }
 
@@ -102,7 +102,7 @@ module.exports = {
   inquirerMenu,
   pausa,
   leerInput,
-  listarTareas,
+  listarOpciones,
   confirmar,
   marcarTareas
 }

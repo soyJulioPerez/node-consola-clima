@@ -22,11 +22,15 @@ class Busquedas {
         params: this.paramsMapBox
       });
       const resp = await instance.get();
-      console.log('🚀 ~ buscarCiudad ~ resp', resp.data);
-      return [];
-      // TODO: retornar las ciudades encontradas
+      return resp.data.features.map( lugar => ({
+          id: lugar.id,
+          nombre: lugar.place_name,
+          lng: lugar.center[0],
+          lat: lugar.center[1]
+        })
+      );
+
     } catch (error) {
-      throw error;
       return [];
     }
 
